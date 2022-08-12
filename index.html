@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="custom.css">
+</head>
+<body>
+   <div id="app" v-cloak>
+   
+    <custom-form></custom-form>
+
+    <hr>
+    <button v-on:click="toggleBox">Toggle Show</button>
+    <div v-if="isVisible" class="box"></div>
+   </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        let app = Vue.createApp({
+            data : function(){
+                return {
+                    grettings: 'hello Vue',
+                    isVisible: false
+
+                }
+            },
+
+            methods:{
+                toggleBox(){
+
+                    this.isVisible = !this.isVisible
+                },
+
+                greet(){
+                    console.log(this.grettings)
+                }
+            }
+        })
+
+        app.component('custom-form',{
+            template: `
+                        <div>
+                            <form @submit.prevent="handleSubmit">
+                            <h1>{{title}}</h1>
+                            <custom-input  :label="emailLabel" v-model="email" />
+                            <custom-input  :label="passwordLabel" v-model="password"/>
+                            <input type="submit">
+                            </form>
+                        </div>
+            `,
+
+            components: ['custom-input'],
+            data () {
+                return {
+                    title: 'Login Form',
+                    email:'',
+                    password:'',
+                    emailLabel: 'email',
+                    passwordLabel: 'password'
+                }
+            },
+            methods: {
+                handleSubmit(){
+                    console.log(this.email,this.password);
+                }
+            }
+        })
+
+
+
+        app.component('custom-input',{
+                template:`
+                        <label>{{label}}</label>
+                        <input type="text" v-model=""/>
+                        
+                `,
+                props:['label']
+        })
+
+        app.mount('#app')
+    </script>
+
+
+</body>
+</html>

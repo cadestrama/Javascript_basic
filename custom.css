@@ -1,0 +1,36 @@
+
+body {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width:100vw;
+    height: 100vh;
+    border: 3px solid steelblue;
+    margin: auto;
+  }
+  
+.error{
+    font-weight: bold;
+    color: red;
+}
+
+.box{
+    background-color: red;
+    width: 200px;
+    height: 200px;
+}
+
+[v-cloak]{
+    display: none;
+}
+
+input{
+    display: block;
+    margin:10px;
+}
